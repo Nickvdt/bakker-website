@@ -1,36 +1,35 @@
 <?php
-/**
- * Display all errors
- */
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once '../src/config.php';
 
-/**
- * Test a mail
- */
-$mailTo = 'persoon@nieuwsbrief.nl';
+$sql = "SELECT titel, introtekst, foto, slug FROM producten";
+$result = $conn->query($sql);
+?>
 
-// Define the headers so we can use HTML
-$headers  = "From: afzender@testmail.nl\r\n";
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+<!DOCTYPE html>
+<html lang="en">
 
-// define the subject
-$subject = 'Voorbeeld test mail';
+<head>
+    <meta charset="UTF-8">
+    <title>Producten</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-// define the html content
-$html = 'hoi tester,<br>' . "\n\r";
-$html .= 'Dit is een voorbeeld mail van mij.<br>' . "\n\r";
-$html .= 'En hier staat een link: <a href="https://www.w3schools.com/php/func_mail_mail.asp">Mail voorbeeld</a><br>' . "\n\r";
-$html .= 'groetjes,<br>' . "\n\r";
-$html .= 'De test mail server';
+<body>
+    <section class="producten">
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<a class="product" href="product.php?slug=' . $row["slug"] . '">';
+                echo '<img class="product__img" src="../images/' . $row["foto"] . '">';
+                echo '<h2 class="product__h2">' . $row["titel"] . '</h2>';
+                echo '<p class="product__p">' . $row["introtekst"] . '</p>' . '</a>';
+            }
+        } else {
+            echo "geen producten gevonden";
+        }
+        $conn->close();
+        ?>
+    </section>
+</body>
 
-// send the mail using php mail 
-$res = mail($mailTo, $subject, $html, $headers);
-
-/**
- * Display the result
- */
-echo 'is de mail verstuurd? ';
-var_dump( $res);
+</html>

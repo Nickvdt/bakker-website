@@ -1,0 +1,43 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+.producten{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.product {
+    max-width: 35rem;
+    padding: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 0.2rem 0.5rem -0.1rem, rgba(0, 0, 0, 0.3) 0 0.1rem 0.3rem -0.1rem;
+    border-radius: 0.5rem;
+    background-color: #FFFFFF;
+    text-decoration: none;
+}
+
+.product__h2{
+    color: black;
+    text-decoration: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.product__p{
+    text-decoration: none;
+}
+
+.product__img{
+    max-width: 25rem;
+    max-height: 25rem;
+    height: auto;
+    object-fit: cover;
+}
