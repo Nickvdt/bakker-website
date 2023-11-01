@@ -31,6 +31,7 @@ $RECYCLE.BIN/
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.env
 
 ### Application
 docker/mysqldata

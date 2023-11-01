@@ -3,6 +3,7 @@ require_once '../src/config.php';
 
 $sql = "SELECT titel, introtekst, foto, slug FROM producten";
 $result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
